@@ -8,15 +8,4 @@ const getTemperamentsHandlers = async (req, res) => {
   }
 };
 
-// const getDogsHandlers = async (req, res) => {
-//   const { name } = req.query;
-//   try {
-//     name
-//       ? res.status(200).json(await getDogsByName(name))
-//       : res.status(200).json(await getAllDogs());
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// };
-
 module.exports = { getTemperamentsHandlers };

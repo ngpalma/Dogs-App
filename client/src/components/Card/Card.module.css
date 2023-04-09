@@ -1,0 +1,12 @@
+.imgCard {
+  width: 100px;
+  height: 100px;
+}
+
+.cardCss{
+  display: flex;
+  border: 1px solid black;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}

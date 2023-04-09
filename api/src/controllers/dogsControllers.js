@@ -1,8 +1,7 @@
 const axios = require("axios");
-const { Dog, Temperament } = require("../db");
+const { Dog } = require("../db");
 
-const { API_KEY } = process.env;
-const API_URL = "https://api.thedogapi.com/v1/breeds";
+const { API_KEY, API_URL } = process.env;
 
 const mapDogs = (arr) =>
   arr.map((ele) => {
@@ -21,31 +20,21 @@ const getAllDogs = async () => {
   const dogsApi = (await axios.get(`${API_URL}?${API_KEY}`)).data;
   const dogsDatabase = await Dog.findAll();
   const newDogsApi = mapDogs(dogsApi);
-  return [...newDogsApi, ...dogsDatabase];
+  return [...dogsDatabase, ...newDogsApi];
 };
 const getDogsByName = async (name) => {
-  const dogsApi = (await axios.get(`${API_URL}?${API_KEY}`)).data;
-  const dogsDatabase = await Dog.findAll({ where: { name } });
-  const newDogsApi = mapDogs(dogsApi);
+  const newDogsApi = await getAllDogs();
   const newDogsApiFiltered = newDogsApi.filter((ele) => ele.name === name);
-  return [...newDogsApiFiltered, ...dogsDatabase];
+  return newDogsApiFiltered;
 };
-const getDogsById = async (idRaza, source) => {
-  if (source === "API") {
-    const dogsApi = (await axios.get(`${API_URL}?${API_KEY}`)).data;
-    const newDogsApi = mapDogs(dogsApi);
-    const newDogsApiFiltered = newDogsApi.filter((ele) => ele.id == idRaza);
-    return newDogsApiFiltered;
-  } else {
-    return Dog.findByPk(idRaza, {
-      include: {
-        model: Temperament,
-      },
-    });
-  }
+const getDogsById = async (idRaza) => {
+  const newDogsApi = await getAllDogs();
+  const newDogsApiFiltered = newDogsApi.find((ele) => ele.id == idRaza);
+  return newDogsApiFiltered;
 };
+
 const postDogs = async (image, name, height, weight, life_span) => {
-  return Dog.create({image, name, height, weight, life_span});
+  return await Dog.create({ image, name, height, weight, life_span });
 };
 
 module.exports = { getAllDogs, getDogsById, postDogs, getDogsByName };
