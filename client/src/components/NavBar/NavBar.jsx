@@ -4,8 +4,15 @@ import style from "./NavBar.module.css";
 const NavBar = () => {
   return (
     <div className={style.navContainer}>
-      <Link to="/home">HOME</Link>
-      <Link to="/form">FORM</Link>
+      <Link to="/home">
+        <p>TODAS LAS RAZAS</p>
+      </Link>
+      <Link to="/form">
+        <p>CREAR RAZA</p>
+      </Link>
+      <Link to="/">
+        <p>SALIR</p>
+      </Link>
     </div>
   );
 };

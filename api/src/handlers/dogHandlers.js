@@ -26,13 +26,13 @@ const getDogsByIdHandlers = async (req, res) => {
 };
 
 const postDogsHandlers = async (req, res) => {
-  const { image, name, height, weight, life_span } = req.body;
+  const { image, name, height, weight, life_span, temperament } = req.body;
   try {
-    if (![image, name, height, weight, life_span].every(Boolean))
+    if (![name, height, weight, life_span, temperament].every(Boolean))
       throw Error("Faltan datos");
     res
       .status(200)
-      .json(await postDogs(image, name, height, weight, life_span));
+      .json(await postDogs(image, name, height, weight, life_span, temperament));
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

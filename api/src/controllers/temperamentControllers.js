@@ -19,8 +19,17 @@ const getTemperaments = async () => {
   const uniqueArray = allDogs.filter((value, index) => {
     return value !== "" && allDogs.indexOf(value) === index;
   });
-  await uniqueArray.forEach((temp) => Temperament.create({ name: temp }));
-  return uniqueArray;
+
+  for (const temp of uniqueArray) {
+    await Temperament.create({
+      name: temp,
+    });
+  }
+
+  // await uniqueArray.forEach((temp) => Temperament.create({ name: temp }));
+  // return uniqueArray;
+  const temps = Temperament.findAll();
+  return temps;
 };
 
 module.exports = { getTemperaments };

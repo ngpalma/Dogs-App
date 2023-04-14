@@ -12,6 +12,7 @@ const mapDogs = (arr) =>
       height: ele.height.metric,
       weight: ele.weight.metric,
       life_span: ele.life_span,
+      temperament: ele.temperament,
       created: false,
     };
   });
@@ -33,8 +34,22 @@ const getDogsById = async (idRaza) => {
   return newDogsApiFiltered;
 };
 
-const postDogs = async (image, name, height, weight, life_span) => {
-  return await Dog.create({ image, name, height, weight, life_span });
+const postDogs = async (
+  image,
+  name,
+  height,
+  weight,
+  life_span,
+  temperament
+) => {
+  return await Dog.create({
+    image,
+    name,
+    height,
+    weight,
+    life_span,
+    temperament,
+  });
 };
 
 module.exports = { getAllDogs, getDogsById, postDogs, getDogsByName };

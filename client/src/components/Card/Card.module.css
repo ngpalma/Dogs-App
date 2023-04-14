@@ -3,10 +3,12 @@
   height: 100px;
 }
 
-.cardCss{
+.cardCss {
   display: flex;
   border: 1px solid black;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
 }
