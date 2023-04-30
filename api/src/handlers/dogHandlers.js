@@ -32,7 +32,9 @@ const postDogsHandlers = async (req, res) => {
       throw Error("Faltan datos");
     res
       .status(200)
-      .json(await postDogs(image, name, height, weight, life_span, temperament));
+      .json(
+        await postDogs(image, name, height, weight, life_span, temperament)
+      );
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

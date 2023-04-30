@@ -1,28 +1,23 @@
-import axios from "axios";
-import NavBar from "./components/NavBar/NavBar";
-import { Home, Form, Detail, Landing } from "./components/index";
+// import axios from "axios";
+import { Home, Form, Detail, Landing, NavBar } from "./components/index";
 import { Routes, Route, useLocation } from "react-router-dom";
+// import { useState } from "react";
 
 function App() {
   const location = useLocation();
-  const onSearch = (name) => {
-    axios.get(`http://localhost:3001/dogs?name=${name}`).then((response) => {
-      const data = response.data;
-      return data;
-    });
-  };
 
   return (
     <div className="App">
-      {location.pathname !== "/" && <NavBar onSearch={onSearch} />}
+      <div>{location.pathname !== "/" && <NavBar />}</div>
+
       <Routes>
         <Route exact path="/" element={<Landing />} />
 
-        <Route exact path="/home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
 
-        <Route exact path="/detail/:idRaza" element={<Detail />} />
+        <Route path="/detail/:idRaza" element={<Detail />} />
 
-        <Route exact path="/form" element={<Form />} />
+        <Route path="/form" element={<Form />} />
       </Routes>
     </div>
   );

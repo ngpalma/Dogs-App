@@ -23,11 +23,15 @@ const getAllDogs = async () => {
   const newDogsApi = mapDogs(dogsApi);
   return [...dogsDatabase, ...newDogsApi];
 };
+
 const getDogsByName = async (name) => {
   const newDogsApi = await getAllDogs();
-  const newDogsApiFiltered = newDogsApi.filter((ele) => ele.name === name);
+  const newDogsApiFiltered = newDogsApi.filter((ele) =>
+    ele.name.toLowerCase().includes(name.toLowerCase())
+  );
   return newDogsApiFiltered;
 };
+
 const getDogsById = async (idRaza) => {
   const newDogsApi = await getAllDogs();
   const newDogsApiFiltered = newDogsApi.find((ele) => ele.id == idRaza);
