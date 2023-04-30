@@ -9,13 +9,6 @@ const getTemperaments = async () => {
     .toString()
     .split(",")
     .map((temp) => temp.trim());
-  // const mapeo = allDogs
-  //   .map((dog) => dog.temperament)
-  //   .toString()
-  //   .split(",");
-  // const cadena = mapeo.toString().split(",");
-  // const arreglo = cadena.split(",");
-  // const mapping = allDogs.map((temp) => temp.trim());
   const uniqueArray = allDogs.filter((value, index) => {
     return value !== "" && allDogs.indexOf(value) === index;
   });
@@ -26,8 +19,6 @@ const getTemperaments = async () => {
     });
   }
 
-  // await uniqueArray.forEach((temp) => Temperament.create({ name: temp }));
-  // return uniqueArray;
   const temps = Temperament.findAll();
   return temps;
 };
